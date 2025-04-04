@@ -5,4 +5,5 @@ import com.br.comunicationapi.core.notificacao.agendar.AgendarNotificacaoOutput;
 
 public interface NotificacaoGateway {
     AgendarNotificacaoOutput agendarNotificacao(AgendarNotificacaoInput agendarNotificacaoInput);
+    AgendarNotificacaoOutput buscarNotificacao();
 }

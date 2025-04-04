@@ -6,6 +6,7 @@ import com.br.comunicationapi.core.notificacao.agendar.AgendarNotificacaoOutput;
 import com.br.comunicationapi.infra.entity.Notificacao;
 import com.br.comunicationapi.infra.repository.notificacao.NotificacaoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +20,12 @@ public class NotificacaoGatewayImpl implements NotificacaoGateway {
         Notificacao notificacao = new Notificacao(agendarNotificacaoInput);
         notificacaoRepository.save(notificacao);
         return new AgendarNotificacaoOutput(notificacao.getDestinatario(), notificacao.getMensagem(), notificacao.getDataEnvio(), notificacao.getStatus());
+    }
+
+    @Override
+    public AgendarNotificacaoOutput buscarNotificacao() {
+        Notificacao notificacao = notificacaoRepository.findById(1L).get();
+        return new AgendarNotificacaoOutput(notificacao.getDestinatario(), notificacao.getMensagem(), notificacao.getDataEnvio(), notificacao.getStatus());
+
     }
 }
