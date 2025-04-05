@@ -2,16 +2,15 @@ package com.br.comunicationapi.infra.entity;
 
 import com.br.comunicationapi.core.enums.EnumStatusNotificacao;
 import com.br.comunicationapi.core.notificacao.agendar.AgendarNotificacaoInput;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
@@ -29,9 +28,8 @@ public class Notificacao {
     private EnumStatusNotificacao status;
 
     public Notificacao(AgendarNotificacaoInput agendarNotificacaoInput) {
-        this.destinatario = agendarNotificacaoInput.destinatario();
-        this.mensagem = agendarNotificacaoInput.mensagem();
-        this.dataEnvio = agendarNotificacaoInput.dataEnvio();
-        this.status = EnumStatusNotificacao.AGENDADA;
+        this.dataEnvio = agendarNotificacaoInput.getDataEnvio();
+        this.destinatario = agendarNotificacaoInput.getDestinatario();
+        this.mensagem = agendarNotificacaoInput.getMensagem();
     }
 }
